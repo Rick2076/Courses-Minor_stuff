@@ -1,0 +1,26 @@
+northwind_shop:
+  target: dev
+  outputs:
+
+    dev:
+      type: bigquery
+      method: service-account
+      project: refined-circuit-327620
+      dataset: dbt_ricardo # You can also use "schema" here
+      threads: 1
+      keyfile: C:\Users\rick1\OneDrive\Área de Trabalho\Analytics Curso\Dw
+      timeout_seconds: 300
+      location: US # Optional, one of US or EU
+      priority: interactive
+      retries: 1
+
+#    prod:
+#      type: bigquery
+#      method: service-account
+#      project: [GCP project id]
+#      dataset: [the name of your dbt dataset]
+#      threads: [1 or more]
+#      keyfile: [/path/to/bigquery/keyfile.json]
+#      timeout_seconds: 300
+#      priority: interactive
+#      retries: 1
