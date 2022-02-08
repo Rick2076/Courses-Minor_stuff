@@ -1,4 +1,3 @@
-from re import I
 from requests import get
 from bs4 import BeautifulSoup
 
@@ -29,15 +28,15 @@ def Image(Chapter_links):
         for img in Image_list:
             Image_chapter += [img['data-src']]
         
-        Image_links += Image_chapter
+        Image_links += [Image_chapter]
     
     return Image_links 
     
 def Download(Image_links, local):
     for chapter in Image_links:
-        chapter_num = str(Image_links.index(chapter))
+        chapter_num = str(Image_links.index(chapter) +1)
         for url_img in chapter:
-            page_num = str(chapter.index(url_img))
+            page_num = str(chapter.index(url_img) +1)
             page_img = get(url_img)
 
             open(local+'Chapter_'+chapter_num+'_Page_'+page_num+'.jpg', 'wb').write(page_img.content)
@@ -45,11 +44,11 @@ def Download(Image_links, local):
 
 
 def Main():
-    #main_url = input("Inisra o link do 'mangakalot' do anime que voce quer baixar por que eu sou preguiçoso e n vou me foder pra voce só precisar digitar o nome do manga")
-    main_url = "https://ww1.mangakakalot.tv/manga/manga-bv959356"
+    main_url = input("Inisra o link do 'mangakalot' do anime que voce quer baixar por que eu sou preguiçoso e n vou me foder pra voce só precisar digitar o nome do manga \n :")
+    #main_url = "https://ww1.mangakakalot.tv/manga/manga-bv959356"
     
-    #local = input("Insira o caminho a pasta destino de começando de 'C:/Users', sim voce tem que fazer isso, n me importo com seu tempo")
-    local = 'C:/Users/rick1/git-course/Scrap/'
+    local = input("Insira o caminho a pasta destino de começando de 'C:/Users', sim voce tem que fazer isso, n me importo com seu tempo \n :")
+    #local = 'C:/Users/rick1/git-course/Scrap/SBR/'
 
     #Pega os links de cada capítulo e baixa individualmente cada imagem em cada capítulo
     Chapter_links = Chapter(main_url)
@@ -61,8 +60,8 @@ def Main():
     Download(Image_links, local)
 
     
-#Main()
-
+Main()
+"""
 image = [Image(["https://ww1.mangakakalot.tv/chapter/manga-bv959356/chapter-1"])]
 local = 'C:/Users/rick1/git-course/Scrap/SBR/'
-Download(image,local)
+Download(image,local)"""
